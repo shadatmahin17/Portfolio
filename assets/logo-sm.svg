@@ -1,10 +1,10 @@
 <svg width="220" height="170" viewBox="0 0 220 170" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
   <title id="logoTitle">SM Logo</title>
-  <desc id="logoDesc">Stylized SH Mahin monogram in black and gold.</desc>
+  <desc id="logoDesc">Stylized SH Mahin monogram in white and gold.</desc>
   <defs>
     <linearGradient id="darkGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#22252A"/>
-      <stop offset="100%" stop-color="#0D0F12"/>
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F5F5F5"/>
     </linearGradient>
     <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#E5C97A"/>
