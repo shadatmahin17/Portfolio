@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadat Hossain Mahin | Textile Engineer & Client Acquisition</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ====== Custom Colour Palette ====== */
+        :root {
+            --black: #1A1A1A;
+            --graphite: #2E2E2E;
+            --gold: #C9A34E;
+            --gold-light: #E5C97A;
+            --white: #FFFFFF;
+            --grey: #E5E5E5;
+
+            --bg: var(--black);
+            --surface: var(--graphite);
+            --surface-hover: #3A3A3A;
+            --text: var(--white);
+            --text-secondary: var(--grey);
+            --accent: var(--gold);
+            --accent-glow: rgba(201, 163, 78, 0.3);
+            --border: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(46, 46, 46, 0.6);
+            --nav-bg: rgba(26, 26, 26, 0.85);
+            --hero-gradient: linear-gradient(135deg, var(--black) 0%, var(--graphite) 100%);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: var(--gold-light);
+        }
+
+        /* ====== Particle Background ====== */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* ====== Navigation ====== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(16px);
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 0.7rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+        .nav-logo-img {
+            width: 46px;
+            height: 36px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+        }
+        .nav-logo-text {
+            white-space: nowrap;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--text);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text);
+            transition: 0.3s;
+        }
+
+        /* ====== Hero Section ====== */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            padding: 6rem 5% 5rem;
+            text-align: center;
+            position: relative;
+        }
+        .hero-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--accent), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ====== Sections ====== */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+            position: relative;
+        }
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* Glassmorphism cards */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, background 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card:hover {
+            background: var(--surface-hover);
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .card-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .card-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .card-subtitle {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Skill tags */
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .skill-tag {
+            background: var(--accent);
+            color: var(--black);
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px var(--accent-glow);
+        }
+        .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        /* Education */
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.4s;
+        }
+        .edu-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+        }
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        /* ====== Responsive ====== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                right: 5%;
+                background: var(--nav-bg);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1.5rem;
+                border-radius: 20px;
+                border: 1px solid var(--border);
+                gap: 1rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero {
+                flex-direction: column;
+                padding-top: 3rem;
+            }
+            .nav-logo-text {
+                display: none;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .hero-img {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Particle container -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">
+            <img src="assets/logo-sm.svg" alt="SM logo" class="nav-logo-img">
+            <span class="nav-logo-text">SH Mahin</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <img src="Mahin Photo.jpg" alt="Shadat Hossain Mahin" class="hero-img">
+        <div class="hero-text">
+            <h1>Shadat Hossain Mahin</h1>
+            <p class="subtitle">Textile Engineering Final-Year Student | Wet Processing Specialist | International Client Acquisition</p>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>I’m a final-year Textile Engineering student with hands-on experience in wet processing, dyeing techniques, and composite materials. I combine technical knowledge with strong communication skills to acquire and manage international clients. I enjoy bridging engineering innovation with real-world business needs.</p>
+            <p style="margin-top:1rem;"><i class="fas fa-map-marker-alt" style="color:var(--accent); margin-right:0.5rem;"></i> Dhaka, Bangladesh</p>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Executive – Client Acquisition</span>
+                <span class="card-date">Jan 2025 – Present</span>
+            </div>
+            <div class="card-subtitle">Aurwave, Dhaka</div>
+            <ul>
+                <li>Identified potential leads and supported sales transactions.</li>
+                <li>Communicated with international clients through freelance marketplaces.</li>
+                <li>Maintained client relationships and assisted in project coordination.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Idea &amp; Innovation Secretary</span>
+                <span class="card-date">Nov 2024 – Apr 2025</span>
+            </div>
+            <div class="card-subtitle">Scholars Fashion Club, Dhaka</div>
+            <ul>
+                <li>Organized events, creative discussions, and club activities.</li>
+                <li>Coordinated member communication and external participation.</li>
+                <li>Managed documentation and innovation-related planning.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="edu-item">
+            <div>
+                <strong>B.Sc. in Textile Engineering</strong><br>
+                University of Scholars, Dhaka (2023 – Present)<br>
+                <small style="color:var(--text-secondary)">7th semester, Major: Wet Processing</small>
+            </div>
+        </div>
+        <div class="edu-item">
+            <div>
+                <strong>Higher Secondary Certificate (Science)</strong><br>
+                Barishal Board – GPA 4.83 (2022)
+            </div>
+        </div>
+        <div class="edu-item">
+            <div>
+                <strong>Secondary School Certificate (Science)</strong><br>
+                Barishal Board – GPA 4.06 (2020)
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Training -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-cloud">
+            <span class="skill-tag">Textile Processes</span>
+            <span class="skill-tag">Wet Processing</span>
+            <span class="skill-tag">Dyeing Techniques</span>
+            <span class="skill-tag">Composite Materials</span>
+            <span class="skill-tag">MATLAB</span>
+            <span class="skill-tag">MS Word</span>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">PowerPoint</span>
+            <span class="skill-tag">Google Docs/Sheets</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Teamwork</span>
+            <span class="skill-tag">Leadership</span>
+        </div>
+
+        <h2 style="margin-top:4rem;">Languages</h2>
+        <div class="skills-cloud">
+            <span class="skill-tag">Bangla (Native)</span>
+            <span class="skill-tag">English (Fluent)</span>
+            <span class="skill-tag">Hindi (Basic)</span>
+        </div>
+
+        <h2 style="margin-top:4rem;">Training</h2>
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">MATLAB Onramp, MathWorks</span>
+                <span class="card-date">2025</span>
+            </div>
+            <p>Self-paced MATLAB training course.</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Fashion Design Course</span>
+                <span class="card-date">2024</span>
+            </div>
+            <p>Three-month professional short course.</p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:shadatmahin681@gmail.com">shadatmahin681@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <a href="https://linkedin.com/in/shadat-mahin" target="_blank" rel="noopener noreferrer">linkedin.com/in/shadat-mahin</a>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/shadatmahin" target="_blank" rel="noopener noreferrer">github.com/shadatmahin</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i> +880 1643 711215
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Shadat Hossain Mahin. Crafted with <i class="fas fa-heart" style="color:var(--accent)"></i></p>
+    </footer>
+
+    <!-- Particles.js CDN -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // ===== Particles.js Configuration =====
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50, density: { enable: true, value_area: 800 } },
+                color: { value: '#C9A34E' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#C9A34E',
+                    opacity: 0.15,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: 'none',
+                    random: true,
+                    out_mode: 'out'
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'grab' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // ===== Mobile Menu =====
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        // ===== Scroll Reveal =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card, .edu-item').forEach((el) => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
