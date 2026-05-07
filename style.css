@@ -765,6 +765,15 @@ li {
 }
 
 /* ====== Contact ====== */
+
+#contact {
+    scroll-margin-top: 90px;
+    min-height: calc(100vh - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
