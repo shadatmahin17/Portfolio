@@ -56,32 +56,50 @@ particlesJS('particles-js', {
 // ===== Mobile Menu =====
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
+const navOverlay = document.getElementById('navOverlay');
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+function toggleMobileMenu() {
+    const isOpen = navLinks.classList.toggle('active');
     hamburger.classList.toggle('open');
-});
+    navOverlay.classList.toggle('active');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+    navLinks.classList.remove('active');
+    hamburger.classList.remove('open');
+    navOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', toggleMobileMenu);
 hamburger.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        hamburger.click();
+        toggleMobileMenu();
     }
 });
+navOverlay.addEventListener('click', closeMobileMenu);
 
 navLinks.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('open');
-    });
+    link.addEventListener('click', closeMobileMenu);
 });
 
-// ===== Scroll Progress Bar =====
+// ===== Scroll Progress Bar & Nav Scroll Effect =====
 const scrollProgress = document.getElementById('scrollProgress');
+const mainNav = document.getElementById('mainNav');
+
 window.addEventListener('scroll', () => {
     const scrollTop = document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const progress = (scrollTop / scrollHeight) * 100;
     scrollProgress.style.width = progress + '%';
+
+    if (scrollTop > 50) {
+        mainNav.classList.add('scrolled');
+    } else {
+        mainNav.classList.remove('scrolled');
+    }
 });
 
 // ===== Active Navigation Highlight =====
