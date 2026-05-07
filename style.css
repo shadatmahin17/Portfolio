@@ -1,24 +1,23 @@
-/* ====== Custom Colour Palette ====== */
 :root {
-    --black: #1A1A1A;
-    --graphite: #2E2E2E;
+    --black: #ffffff;
+    --graphite: #F5F5F5;
     --gold: #C9A34E;
     --gold-light: #E5C97A;
-    --white: #FFFFFF;
-    --grey: #E5E5E5;
+    --white: #1A1A1A;
+    --grey: #666666;
 
     --bg: var(--black);
     --surface: var(--graphite);
-    --surface-hover: #3A3A3A;
+    --surface-hover: #E8E8E8;
     --text: var(--white);
     --text-secondary: var(--grey);
     --accent: var(--gold);
-    --accent-glow: rgba(201, 163, 78, 0.3);
-    --border: rgba(255, 255, 255, 0.08);
-    --card-bg: rgba(46, 46, 46, 0.6);
-    --nav-bg: rgba(26, 26, 26, 0.85);
-    --hero-gradient: linear-gradient(135deg, var(--black) 0%, var(--graphite) 100%);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --accent-glow: rgba(201, 163, 78, 0.15);
+    --border: rgba(0, 0, 0, 0.08);
+    --card-bg: rgba(245, 245, 245, 0.8);
+    --nav-bg: rgba(255, 255, 255, 0.95);
+    --hero-gradient: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -49,7 +48,7 @@ a:hover {
     color: var(--gold-light);
 }
 
-/* ====== Preloader ====== */
+
 .preloader {
     position: fixed;
     inset: 0;
@@ -76,7 +75,7 @@ a:hover {
     to { transform: rotate(360deg); }
 }
 
-/* ====== Scroll Progress ====== */
+
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -88,7 +87,7 @@ a:hover {
     transition: width 0.1s linear;
 }
 
-/* ====== Particle Background ====== */
+
 #particles-js {
     position: fixed;
     top: 0;
@@ -99,7 +98,7 @@ a:hover {
     opacity: 0.4;
 }
 
-/* ====== Skip Navigation ====== */
+
 .skip-nav {
     position: absolute;
     top: -100%;
@@ -116,7 +115,7 @@ a:hover {
     top: 0;
 }
 
-/* ====== Navigation ====== */
+
 nav {
     position: sticky;
     top: 0;
@@ -133,14 +132,14 @@ nav {
     display: flex;
     align-items: center;
     gap: 0.65rem;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.2rem;
     color: var(--text);
     letter-spacing: -0.5px;
 }
 .nav-logo-img {
-    width: 46px;
-    height: 36px;
+    width: 100px;
+    height: 46px;
     object-fit: contain;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
 }
@@ -203,7 +202,7 @@ nav {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ====== Hero Section ====== */
+
 .hero {
     display: flex;
     align-items: center;
@@ -327,7 +326,7 @@ nav {
     box-shadow: 0 4px 15px var(--accent-glow);
 }
 
-/* ====== Sections ====== */
+
 section {
     padding: 5rem 5%;
     max-width: 1200px;
@@ -361,7 +360,7 @@ section {
     margin-top: 1rem;
 }
 
-/* ====== About Section ====== */
+
 .about-content {
     display: grid;
     grid-template-columns: 1fr;
@@ -411,7 +410,7 @@ section {
     font-size: 0.95rem;
 }
 
-/* Stats */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -451,7 +450,7 @@ section {
     margin-top: 0.25rem;
 }
 
-/* ====== Timeline ====== */
+
 .timeline {
     position: relative;
     padding-left: 2.5rem;

@@ -3,24 +3,23 @@ window.addEventListener('load', () => {
     document.getElementById('preloader').classList.add('hidden');
 });
 
-// ===== Particles.js Configuration =====
 particlesJS('particles-js', {
     particles: {
         number: { value: 50, density: { enable: true, value_area: 800 } },
         color: { value: '#C9A34E' },
         shape: { type: 'circle' },
-        opacity: { value: 0.3, random: true },
-        size: { value: 3, random: true },
+        opacity: { value: 0.15, random: true },  // Reduced opacity for white bg
+        size: { value: 2, random: true },         // Slightly smaller particles
         line_linked: {
             enable: true,
             distance: 150,
             color: '#C9A34E',
-            opacity: 0.15,
+            opacity: 2,                        // Reduced for subtle visibility
             width: 1
         },
         move: {
             enable: true,
-            speed: 1,
+            speed: 0.8,                          // Slightly slower
             direction: 'none',
             random: true,
             out_mode: 'out'
@@ -29,9 +28,26 @@ particlesJS('particles-js', {
     interactivity: {
         detect_on: 'canvas',
         events: {
-            onhover: { enable: true, mode: 'grab' },
-            onclick: { enable: true, mode: 'push' },
+            onhover: { 
+                enable: true, 
+                mode: 'grab'
+            },
+            onclick: { 
+                enable: true, 
+                mode: 'push' 
+            },
             resize: true
+        },
+        modes: {
+            grab: {
+                distance: 140,
+                line_linked: {
+                    opacity: 0.2                // Increased hover visibility
+                }
+            },
+            push: {
+                particles_nb: 4
+            }
         }
     },
     retina_detect: true
