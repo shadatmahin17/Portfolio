@@ -767,11 +767,7 @@ li {
 /* ====== Contact ====== */
 
 #contact {
-    scroll-margin-top: 40px;
-    min-height: calc(100vh - 90px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    scroll-margin-top: 90px;
 }
 
 .contact-grid {
@@ -913,6 +909,15 @@ footer p {
 
 /* ====== Responsive ====== */
 @media (max-width: 768px) {
+    section {
+        padding: 3rem 5%;
+    }
+    .section-header {
+        margin-bottom: 2rem;
+    }
+    .contact-value {
+        word-break: break-word;
+    }
     .nav-links {
         position: fixed;
         top: 0;
@@ -993,6 +998,9 @@ footer p {
 }
 
 @media (max-width: 480px) {
+    section {
+        padding: 2.5rem 1rem;
+    }
     .stats-grid {
         grid-template-columns: 1fr 1fr;
         gap: 1rem;

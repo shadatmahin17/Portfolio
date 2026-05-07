@@ -107,8 +107,8 @@ const sections = document.querySelectorAll('section[id]');
 const navItems = document.querySelectorAll('.nav-links a');
 
 function highlightNav() {
-    const scrollY = window.scrollY + 120;
-    const atBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 50);
+    const activationY = window.scrollY + 120;
+    const atBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 120);
 
     navItems.forEach((link) => link.classList.remove('active'));
 
@@ -119,17 +119,28 @@ function highlightNav() {
         return;
     }
 
+    let activeSectionId = '';
     sections.forEach((section) => {
         const top = section.offsetTop;
         const height = section.offsetHeight;
-        const id = section.getAttribute('id');
-        const link = document.querySelector('.nav-links a[href="#' + id + '"]');
-        if (link) {
-            if (scrollY >= top && scrollY < top + height) {
-                link.classList.add('active');
-            }
+        if (activationY >= top && activationY < top + height) {
+            activeSectionId = section.getAttribute('id');
         }
     });
+
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+        const contactTop = contactSection.offsetTop;
+        const nearContact = window.scrollY + window.innerHeight >= contactTop + 120;
+        if (nearContact) {
+            activeSectionId = 'contact';
+        }
+    }
+
+    if (activeSectionId) {
+        const activeLink = document.querySelector('.nav-links a[href="#' + activeSectionId + '"]');
+        if (activeLink) activeLink.classList.add('active');
+    }
 }
 window.addEventListener('scroll', highlightNav);
 
