@@ -78,17 +78,35 @@ function closeMobileMenu() {
 }
 
 hamburger.addEventListener('click', toggleMobileMenu);
-hamburger.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleMobileMenu();
-    }
-});
 navOverlay.addEventListener('click', closeMobileMenu);
 
 navLinks.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMobileMenu);
 });
+
+
+function isMobileView() {
+    return window.matchMedia('(max-width: 768px)').matches;
+}
+
+window.addEventListener('resize', () => {
+    if (!isMobileView()) {
+        closeMobileMenu();
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (!isMobileView()) return;
+
+    const clickedHamburger = hamburger.contains(e.target);
+    const clickedNav = navLinks.contains(e.target);
+
+    if (navLinks.classList.contains('active') && !clickedHamburger && !clickedNav) {
+        closeMobileMenu();
+    }
+});
+
+closeMobileMenu();
 
 // ===== Scroll Progress Bar & Nav Scroll Effect =====
 const scrollProgress = document.getElementById('scrollProgress');
