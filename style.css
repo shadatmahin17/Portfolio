@@ -608,7 +608,7 @@ li {
 
 /* ====== Skills Section ====== */
 .skills-category {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 .skills-category-title {
     display: flex;
@@ -767,7 +767,7 @@ li {
 /* ====== Contact ====== */
 
 #contact {
-    scroll-margin-top: 90px;
+    scroll-margin-top: 40px;
     min-height: calc(100vh - 90px);
     display: flex;
     flex-direction: column;
