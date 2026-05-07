@@ -56,32 +56,50 @@ particlesJS('particles-js', {
 // ===== Mobile Menu =====
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
+const navOverlay = document.getElementById('navOverlay');
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+function toggleMobileMenu() {
+    const isOpen = navLinks.classList.toggle('active');
     hamburger.classList.toggle('open');
-});
+    navOverlay.classList.toggle('active');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+    navLinks.classList.remove('active');
+    hamburger.classList.remove('open');
+    navOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', toggleMobileMenu);
 hamburger.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        hamburger.click();
+        toggleMobileMenu();
     }
 });
+navOverlay.addEventListener('click', closeMobileMenu);
 
 navLinks.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('open');
-    });
+    link.addEventListener('click', closeMobileMenu);
 });
 
-// ===== Scroll Progress Bar =====
+// ===== Scroll Progress Bar & Nav Scroll Effect =====
 const scrollProgress = document.getElementById('scrollProgress');
+const mainNav = document.getElementById('mainNav');
+
 window.addEventListener('scroll', () => {
     const scrollTop = document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const progress = (scrollTop / scrollHeight) * 100;
     scrollProgress.style.width = progress + '%';
+
+    if (scrollTop > 50) {
+        mainNav.classList.add('scrolled');
+    } else {
+        mainNav.classList.remove('scrolled');
+    }
 });
 
 // ===== Active Navigation Highlight =====
@@ -90,6 +108,17 @@ const navItems = document.querySelectorAll('.nav-links a');
 
 function highlightNav() {
     const scrollY = window.scrollY + 120;
+    const atBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 50);
+
+    navItems.forEach((link) => link.classList.remove('active'));
+
+    if (atBottom) {
+        const lastSection = sections[sections.length - 1];
+        const lastLink = document.querySelector('.nav-links a[href="#' + lastSection.getAttribute('id') + '"]');
+        if (lastLink) lastLink.classList.add('active');
+        return;
+    }
+
     sections.forEach((section) => {
         const top = section.offsetTop;
         const height = section.offsetHeight;
@@ -98,8 +127,6 @@ function highlightNav() {
         if (link) {
             if (scrollY >= top && scrollY < top + height) {
                 link.classList.add('active');
-            } else {
-                link.classList.remove('active');
             }
         }
     });
