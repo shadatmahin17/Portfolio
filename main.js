@@ -58,11 +58,15 @@ const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 const navOverlay = document.getElementById('navOverlay');
 
+hamburger.setAttribute('aria-controls', 'navLinks');
+hamburger.setAttribute('aria-expanded', 'false');
+
 function toggleMobileMenu() {
     const isOpen = navLinks.classList.toggle('active');
     hamburger.classList.toggle('open');
     navOverlay.classList.toggle('active');
     document.body.style.overflow = isOpen ? 'hidden' : '';
+    hamburger.setAttribute('aria-expanded', String(isOpen));
 }
 
 function closeMobileMenu() {
@@ -70,6 +74,7 @@ function closeMobileMenu() {
     hamburger.classList.remove('open');
     navOverlay.classList.remove('active');
     document.body.style.overflow = '';
+    hamburger.setAttribute('aria-expanded', 'false');
 }
 
 hamburger.addEventListener('click', toggleMobileMenu);
