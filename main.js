@@ -108,6 +108,17 @@ const navItems = document.querySelectorAll('.nav-links a');
 
 function highlightNav() {
     const scrollY = window.scrollY + 120;
+    const atBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 50);
+
+    navItems.forEach((link) => link.classList.remove('active'));
+
+    if (atBottom) {
+        const lastSection = sections[sections.length - 1];
+        const lastLink = document.querySelector('.nav-links a[href="#' + lastSection.getAttribute('id') + '"]');
+        if (lastLink) lastLink.classList.add('active');
+        return;
+    }
+
     sections.forEach((section) => {
         const top = section.offsetTop;
         const height = section.offsetHeight;
@@ -116,8 +127,6 @@ function highlightNav() {
         if (link) {
             if (scrollY >= top && scrollY < top + height) {
                 link.classList.add('active');
-            } else {
-                link.classList.remove('active');
             }
         }
     });
